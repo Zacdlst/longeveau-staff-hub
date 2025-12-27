@@ -1,8 +1,11 @@
-/* eslint-disable no-undef */
 import { createClient } from "@supabase/supabase-js";
 
-export const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
+export const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
+
+if (!supabaseUrl) throw new Error("supabaseUrl is required.");
+if (!supabaseKey) throw new Error("supabaseKey is required.");
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;
